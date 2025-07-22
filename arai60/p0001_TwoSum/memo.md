@@ -2,6 +2,7 @@
 - step1: 5分考えて分からなかったら答えを見る。答えを理解したら、答えを隠して書く。筆が進まず5分立ったら答えを見る。答えを送信して正解するまで。
 - step2: コードを読みやすく整える。まずAIにレビューしてもらう。その後、ほかの人のコードも読む。動くコードになったら終了。
 - step3: 時間を計りながら書く。10分以内に3回連続でアクセプトされるまで。
+- step4: いただいたレビューを元に修正する。
 
 ## step1
 1. 2重ループで解けるものの `Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?`なのでそれはダメ.(ここまで30s)
@@ -63,4 +64,18 @@ class Solution:
         
         ValueError("Never reached here due to the presumption that each input would have exactly one solution.")
 
+```
+
+## step4
+```py
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_to_index = {} # Avoid abbreviation
+        for index, num in enumerate(nums): # use index instead of i
+            complement = target - num
+            if complement in num_to_index:
+                return (index, num_to_index[complement])
+            num_to_index[num] = index
+        
+        raise ValueError("Never reached here due to the presumption that each input would have exactly one solution.") # need to raise!
 ```
